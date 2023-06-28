@@ -13,8 +13,6 @@
         android:theme="@style/Theme.Perechi_de_carti"
         tools:targetApi="31">
 
-        fawfawfawfaffaefaf
-        defdsghgjy
 
         <activity
             android:name=".MainActivity"

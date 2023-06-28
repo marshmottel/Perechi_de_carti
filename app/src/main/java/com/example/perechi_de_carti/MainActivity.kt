@@ -1,43 +1,44 @@
 package com.example.perechi_de_carti
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.perechi_de_carti.ui.theme.Perechi_de_cartiTheme
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            Perechi_de_cartiTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
-                }
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity {
+    private ImageView cardImageView;
+    private Button drawButton;
+    private int[] cardImages = {
+        R.drawable.card_1,
+        R.drawable.card_2,
+        R.drawable.card_3,
+        // Adaugă imagini pentru cărți adiționale aici
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        cardImageView = findViewById(R.id.cardImageView);
+        drawButton = findViewById(R.id.drawButton);
+
+        drawButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawCard();
             }
-        }
+        });
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-            text = "Hello $name!",
-            modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Perechi_de_cartiTheme {
-        Greeting("Android")
+    private void drawCard() {
+        Random random = new Random();
+        int cardIndex = random.nextInt(cardImages.length);
+        int imageId = cardImages[cardIndex];
+        cardImageView.setImageResource(imageId);
     }
 }
